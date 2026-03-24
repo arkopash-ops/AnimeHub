@@ -1,15 +1,25 @@
+import Image from "next/image";
+
 export default function HeroSection() {
   return (
     <section className="relative bg-gray-900 text-gray-100 h-screen flex items-center justify-center">
-      {/* Background overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/anime_art.jpg"
+          alt="Hero Background"
+          fill
+          loading="eager"
+          className="w-full h-full object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 opacity-80"></div>
 
       {/* Hero content */}
       <div className="relative z-10 text-center px-4">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">
+        <h1 className="text-6xl md:text-8xl font-bebas font-bold tracking-wider mb-4 text-white">
           Welcome to AnimeHub
         </h1>
-        <p className="text-lg md:text-2xl mb-6 text-gray-300">
+        <p className="text-lg md:text-2xl font-bebas font-bold mb-6 text-gray-300">
           Discover, explore, and track your favorite anime all in one place.
         </p>
         <a

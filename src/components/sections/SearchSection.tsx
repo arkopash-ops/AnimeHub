@@ -6,11 +6,13 @@ import { Anime } from "@/src/types/anime";
 import { searchAnime } from "../../lib/base_api";
 import AnimeLoader from "../layout/AnimeLoader";
 import AnimeCard from "../layout/AnimeCard";
+import AnimeInfo from "../layout/AnimeInfo";
 
 export default function SearchSection() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<Anime[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedAnimeId, setSelectedAnimeId] = useState<number | null>(null);
 
   // Debounce timer
   useEffect(() => {
@@ -44,7 +46,6 @@ export default function SearchSection() {
     <section className="bg-gray-900 text-gray-100 py-16 flex flex-col items-center">
       <div className="w-full max-w-xl px-4 mb-6">
         <div className="relative w-full">
-          {/* Magnifying glass icon */}
           <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
           </div>
@@ -53,7 +54,7 @@ export default function SearchSection() {
             <button
               type="button"
               onClick={handleClear}
-              className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-200 cursor-pointer group"
+              className="absolute inset-y-0 right-0 flex items-center font-bebas font-bold pr-3 text-gray-400 hover:text-gray-200 cursor-pointer group"
               title="Clear search"
             >
               <XMarkIcon className="h-5 w-5" />
@@ -76,7 +77,11 @@ export default function SearchSection() {
       {results.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full max-w-6xl px-4">
           {results.map((anime) => (
-            <AnimeCard key={anime.id} anime={anime} />
+            <AnimeCard
+              key={anime.id}
+              anime={anime}
+              onExplore={setSelectedAnimeId}
+            />
           ))}
         </div>
       )}
@@ -85,6 +90,13 @@ export default function SearchSection() {
         <p className="text-gray-400 mt-6">
           No results found for `&ldquo;`{query}`&ldquo;`
         </p>
+      )}
+
+      {selectedAnimeId !== null && (
+        <AnimeInfo
+          id={selectedAnimeId}
+          onClose={() => setSelectedAnimeId(null)}
+        />
       )}
     </section>
   );

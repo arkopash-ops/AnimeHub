@@ -53,7 +53,7 @@ export const searchAnime = async (query: string): Promise<Anime[]> => {
       score: item.score,
     }));
   } catch (error) {
-    console.error("Failed to fetch top anime:", error);
+    console.error("Failed to search anime:", error);
     return [];
   }
 };

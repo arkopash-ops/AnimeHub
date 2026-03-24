@@ -4,11 +4,11 @@ export default function AnimeLoader() {
       {Array.from({ length: 1 }).map((_, i) => (
         <div
           key={i}
-          className="animate-pulse rounded overflow-hidden shadow p-4"
+          className="animate-pulse rounded-lg overflow-hidden shadow-lg p-4 bg-gray-800"
         >
-          <div className="w-full h-56 bg-gray-300 mb-4"></div>
-          <div className="h-6 bg-gray-300 rounded mb-2"></div>
-          <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+          <div className="w-full h-56 bg-gray-700 mb-4 rounded-lg"></div>
+          <div className="h-6 bg-gray-600 rounded mb-2"></div>
+          <div className="h-4 bg-gray-600 rounded w-3/4"></div>
         </div>
       ))}
     </div>
