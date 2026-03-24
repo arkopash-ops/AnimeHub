@@ -7,9 +7,11 @@ interface AnimeContainerProps {
 
 export default function AnimeContainer({ animeList }: AnimeContainerProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div className="flex overflow-x-auto space-x-6 py-4 px-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
       {animeList.map((anime) => (
-        <AnimeCard key={anime.id} anime={anime} />
+        <div key={anime.id} className="flex-shrink-0 w-60">
+          <AnimeCard anime={anime} />
+        </div>
       ))}
     </div>
   );
