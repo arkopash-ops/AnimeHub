@@ -40,7 +40,20 @@ export const getTopAnime = async (): Promise<Anime[]> => {
   }
 };
 
-export const searchAnime = async (query: string) => {
-  const res = await fetch(`${BASE_URL}/anime?q=${query}`);
-  return res.json();
+export const searchAnime = async (query: string): Promise<Anime[]> => {
+  try {
+    const res = await fetch(`${BASE_URL}/anime?q=${query}`);
+    const data = await res.json();
+
+    return data.data.map((item: APIAnime) => ({
+      id: item.mal_id,
+      name: item.title,
+      imageUrl: item.images.jpg.image_url,
+      episodes: item.episodes,
+      score: item.score,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch top anime:", error);
+    return [];
+  }
 };
