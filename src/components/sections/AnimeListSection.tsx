@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { Anime } from "@/src/types/anime";
 import { generateAnimeList } from "@/src/lib/base_api";
+import AnimeLoader from "../layout/AnimeLoader";
+import AnimeContainer from "../layout/AnimeContainer";
 
 export default function AnimeListSection() {
   const [animeList, setAnimeList] = useState<Anime[]>([]);
@@ -18,16 +20,12 @@ export default function AnimeListSection() {
     fetchAnime();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <AnimeLoader />;
 
   return (
-    <section className="anime-list-section" style={{ padding: "2rem" }}>
-      <h1>List of Anime</h1>
-      <ul>
-        {animeList.map((anime, index) => (
-          <li key={anime.id ?? index}>{anime.name}</li>
-        ))}
-      </ul>
+    <section className="anime-list-section p-8">
+      <h1 className="text-2xl font-bold mb-6">List of Anime</h1>
+      <AnimeContainer animeList={animeList} />
     </section>
   );
 }

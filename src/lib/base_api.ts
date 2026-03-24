@@ -12,8 +12,9 @@ export const generateAnimeList = async (): Promise<Anime[]> => {
     return data.data.map((item: APIAnime) => ({
       id: item.mal_id,
       name: item.title,
+      imageUrl: item.images.jpg.image_url,
       episodes: item.episodes,
-      url: item.url,
+      score: item.score,
     }));
   } catch (error) {
     console.error("Failed to fetch anime:", error);

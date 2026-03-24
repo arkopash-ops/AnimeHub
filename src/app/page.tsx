@@ -1,3 +1,4 @@
+import AnimeFooter from "../components/layout/AnimeFooter";
 import AnimeNavbar from "../components/layout/AnimeNavbar";
 import AboutSection from "../components/sections/AboutSection";
 import AnimeListSection from "../components/sections/AnimeListSection";
@@ -34,6 +35,8 @@ export default function Home() {
       <section id="contact">
         <ContectSection />
       </section>
+
+      <AnimeFooter />
     </div>
   );
 }
